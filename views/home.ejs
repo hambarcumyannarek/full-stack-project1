@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body>
+  
+    <nav>
+        <div class="container">
+            <h3 class="logo">
+                <i class="fa-solid fa-mobile-screen"></i>
+                SmartCenter
+            </h3>
+            <div class="navLeft">
+                <a href="/likesProduct"><button class="btn addNewProductBtn"><i class="fa-regular fa-heart"></i></button></a>
+                <a href="/addProduct"><button class="btn addNewProductBtn"><i class="fa-solid fa-plus"></i></button></a>
+                <button class="btn profilBtn"></button>
+            </div>
+        </div>
+
+        <div class="profil">
+            <span>name: <%= name %></span>
+            <span>email: <%= email %></span>
+            <a href="/logout"><button class="btn">log out</button></a>
+        </div>
+    </nav>
+
+    <div class="section">
+        <div class="container productCont">
+            <div class="title">
+                <h2>My Products</h2>
+                <p>The Best Product In The World</p>
+            </div>
+            <div class="boxes">
+
+                <% for(let i = 0; i < products.length; i++) { %>
+                <div class="card" data-product="<%= products[i].id %>" data-productuser="<%= products[i].user_id %>"> 
+                    <div class="img">
+                        <div class="icons">
+                            <!-- <i class="fa-regular fa-heart like"></i> -->
+                            <div class="likeChoose"></div>
+                            <i class="fa-regular fa-user getProductUser"></i>
+                            <% if(id === products[i].user_id) {%>
+                                <i class="fa-solid fa-trash deleteAddProduct"></i>
+                            <% } %>    
+                        </div>
+                        <img src="images/upload/<%= products[i].img %>" alt="Notebook">
+                    </div>
+                    <div class="content">
+                        <h3><%= products[i].product_name %></h3>
+                        <p>$<%= products[i].price %></p>
+                         <div class="infoBox">
+                            <i class="fa-solid fa-xmark closeProductInfo"></i>
+                            <div class="info">
+                                <p>name: <%= products[i].autohor_name %></p>
+                                <p>email: <%= products[i].autohor_email %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div> 
+        </div>
+    </div>
+
+    <script defer src="./scripts/home.js"></script>
+    <script defer>
+        let name = `<%=name%>`;
+        const btn = document.querySelector('.navLeft .profilBtn');
+
+        function getFirstIndex(realName) {
+            realName = realName.split('');
+            let sum;
+            for(let i of realName) {
+                if(i !== ' ') { 
+                    sum = i;
+                    break;
+                } 
+            }
+            return sum.toUpperCase();
+    }
+
+        btn.innerText = getFirstIndex('<%=name%>');
+        btn.addEventListener('click', (evn) => {
+            btn.classList.toggle('active');
+            if(btn.className.search('active') !== -1) {
+                btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                btn.innerText = getFirstIndex('<%=name%>');
+            }
+        })
+        const cardsPorc = document.querySelectorAll('.card');
+
+
+        let resultYourFavorite = '<%- JSON.stringify(likesProducts) %>';
+        resultYourFavorite = JSON.parse(resultYourFavorite);
+        // console.log(document.querySelector(`[data-product="${result[0].product_id}"]`))
+        resultYourFavorite.forEach(obj => {
+            document.querySelector(`[data-product="${obj.product_id}"]`).querySelector('.likeChoose').innerHTML = '<i class="fa-solid fa-heart like active"></i>';
+        })
+
+        cardsPorc.forEach(card => {
+            if(card.querySelector('.likeChoose').innerHTML === '') {
+                card.querySelector('.likeChoose').innerHTML = '<i class="fa-regular fa-heart like"></i>';
+            }
+        })
+
+
+        const addNewProductBtn = document.querySelector('.addNewProductBtn');
+
+        const deleteAddProduct = document.querySelectorAll('.deleteAddProduct').length !== 0 ? document.querySelectorAll('.deleteAddProduct') : null;
+        
+        if(deleteAddProduct !== null) {
+            deleteAddProduct.forEach(delBtn => {
+                delBtn.addEventListener('click', () => {
+                    const productId = findParentCard(delBtn).getAttribute('data-product');
+                    console.log(productId)
+                    fetch(`/deleteSpecificProduct/${productId}`, {
+                        method: 'delete'
+                    }).then(() => {
+                        window.location.href = '/'
+                    })
+                })
+            })
+        }
+    </script>
+</body>
+</html>

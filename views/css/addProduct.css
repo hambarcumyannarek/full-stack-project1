@@ -1,0 +1,350 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  font-family: sans-serif;
+}
+
+:root {
+  --web-color: rgb(28,130,207);
+}
+
+body {
+  min-height: 1100vh;
+}
+
+.backgroundLoginRegister {
+  background: linear-gradient(45deg, #8360c3, #2ebf91);
+}
+
+.section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  padding-top: 100px;
+}
+.section form {
+  max-width: 450px;
+  width: 100%;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background: #fff;
+}
+.section form h3 {
+  text-align: center;
+  padding: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  font-size: 1.8em;
+  font-weight: normal;
+}
+.section form .bottom {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.section form .bottom .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  width: 100%;
+}
+.section form .bottom .inputs label {
+  position: relative;
+}
+.section form .bottom .inputs label input {
+  width: 100%;
+  padding: 12px 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  font-size: 1.1em;
+  padding-right: 35px;
+  background-color: white !important;
+  outline: none;
+  transition: all 0.5s;
+}
+.section form .bottom .inputs label input.err {
+  border-bottom: 2px solid red;
+}
+.section form .bottom .inputs label input:focus {
+  background: white;
+  background-color: white !important;
+  border-bottom: 2px solid var(--web-color);
+}
+.section form .bottom .inputs label input:focus::-moz-placeholder {
+  color: var(--web-color);
+}
+.section form .bottom .inputs label input:focus::placeholder {
+  color: var(--web-color);
+}
+.section form .bottom .inputs label input:focus ~ i {
+  color: var(--web-color);
+}
+.section form .bottom .inputs label input.err ~ i {
+  color: red;
+}
+.section form .bottom .inputs label input.err:focus {
+  background: white;
+  border-bottom: 2px solid red;
+}
+.section form .bottom .inputs label input.err:focus ~ i {
+  color: red;
+}
+.section form .bottom .inputs label i {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  font-size: 1.2em;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.8);
+}
+.section form .bottom button {
+  width: 100%;
+  padding: 14px 10px;
+  background: var(--web-color);
+  text-align: center;
+  border-radius: 30px;
+  color: #fff;
+  border: 2px solid var(--web-color);
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.5s;
+}
+.section form .bottom button:hover {
+  color: var(--web-color);
+  background: #fff;
+}
+.section form .bottom .bottomText {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-size: 1.1em;
+}
+.section form .bottom .bottomText a {
+  color: var(--web-color);
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1250px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 1150px) {
+  .container {
+    max-width: 750px;
+  }
+}
+nav {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: all 0.5s;
+}
+nav.active {
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--web-color);
+  font-size: 1.4em;
+}
+nav .navLeft {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+nav .navLeft .btn {
+  width: 50px;
+  height: 50px;
+  padding: 12px;
+  border-radius: 50%;
+  background: var(--web-color);
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: 1.1em;
+  color: white;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+nav .profil {
+  max-width: 300px;
+  padding: 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  right: -100%;
+  bottom: calc(-100% - 100px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  visibility: visible;
+  opacity: 0;
+  transition: all 0.5s;
+}
+nav .profil.active {
+  visibility: visible;
+  opacity: 1;
+  right: 20px;
+}
+nav .profil .btn {
+  width: 100%;
+  padding: 12px 20px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: 5px;
+  border: 2px solid var(--web-color);
+  background: var(--web-color);
+  font-size: 1.1em;
+  transition: all 0.5s;
+}
+nav .profil .btn:hover {
+  background: white;
+  color: var(--web-color);
+}
+
+.addProductSection .container {
+  flex-direction: column;
+  gap: 50px;
+}
+.addProductSection .container form {
+  flex-direction: column;
+  max-width: 750px;
+  width: 100%;
+  display: flex;
+  padding: 30px 20px;
+  gap: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+}
+.addProductSection .container form label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+.addProductSection .container form label span {
+  color: rgba(0, 0, 0, 0.7);
+}
+.addProductSection .container form label input {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  padding: 12px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.addProductSection .container form .uploadBox {
+  width: 100%;
+  min-height: 200px;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  border: 3px dashed var(--web-color);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+.addProductSection .container form .uploadBox .uploadCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+}
+.addProductSection .container form .uploadBox .uploadCenter i {
+  color: var(--web-color);
+  font-size: 4em;
+}
+.addProductSection .container form .uploadBox .uploadCenter span {
+  color: rgba(0, 0, 0, 0.7);
+}
+.addProductSection .container form .uploadBox .uploadImg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.addProductSection .container form .uploadBox .uploadImg img {
+  max-width: 350px;
+  width: 100%;
+  background-size: cover;
+}
+.addProductSection .container form .formBottome {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+.addProductSection .container form .formBottome label {
+  width: 100%;
+}
+.addProductSection .container form .formButtons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+.addProductSection .container form .formButtons button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.07);
+  transition: all 0.5s;
+}
+.addProductSection .container form .formButtons button:nth-child(1) {
+  background: var(--web-color);
+  color: #fff;
+}
+.addProductSection .container form .formButtons button:nth-child(1):hover {
+  background: #fff;
+  color: var(--web-color);
+}
+.addProductSection .container form .formButtons button:nth-child(2) {
+  background: #fff;
+  color: var(--web-color);
+}
+.addProductSection .container form .formButtons button:nth-child(2):hover {
+  background: var(--web-color);
+  color: #fff;
+}
+
+@media screen and (max-width: 560px) {
+  .addProductSection .container form .formBottome {
+    flex-direction: column;
+  }
+  .addProductSection .container form .formButtons {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=addProduct.css.map */

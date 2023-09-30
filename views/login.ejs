@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <div class="section backgroundLoginRegister">
+        <form action="/login" method="post">
+            <h3>Login</h3>
+            <div class="bottom">
+                <div class="inputs">
+                    <label>
+                        <input type="email" placeholder="enter your email" name="email">
+                        <i class="fa-regular fa-envelope"></i>
+                    </label>
+                    <label>
+                        <input type="password" placeholder="password" name="password">
+                        <i class="fa-regular fa-eye-slash passIcon"></i>
+                    </label>
+                </div>
+                <button type="submit">Login</button>
+                <p class="bottomText">Not a mamber? <a href="/register">Sing Up</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="./scripts/login.js"></script>
+</body>
+</html>

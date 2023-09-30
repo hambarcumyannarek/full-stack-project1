@@ -1,0 +1,26 @@
+@import '_all.scss';
+@import '_navbar.scss';
+@import '_cards.scss';
+ 
+
+.productCont {
+    flex-direction: column;
+    gap: 50px;
+
+    .title {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        
+        h2 {
+            font-size: 2.5em;
+            color: rgba(0,0,0,0.9);
+            font-weight: normal;
+        }
+
+        p {
+            color: rgba(0,0,0,0.7);
+        }
+    }
+}

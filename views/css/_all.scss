@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    font-family: sans-serif;
+}
+
+:root {
+    --web-color: rgb(28,130,207);
+}
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    min-height: 1100vh;
+}
+.backgroundLoginRegister {
+    background: linear-gradient(45deg, #8360c3,#2ebf91);
+}
+.section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 100px;
+
+    form {
+        max-width: 450px;
+        width: 100%;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        background: #fff;
+
+        h3 {
+            text-align: center;
+            padding: 25px;
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+            font-size: 1.8em;
+            font-weight: normal;
+        }
+
+        .bottom {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            .inputs {
+                display: flex;
+                flex-direction: column;
+                gap: 35px;
+                width: 100%;
+    
+                label {
+                    position: relative;
+
+                    input {
+                        width: 100%;
+                        padding: 12px 0;
+                        border-bottom: 2px solid rgba(0,0,0,0.2);
+                        font-size: 1.1em;
+                        padding-right: 35px;
+                        background-color: white !important;
+                        outline: none;
+                        transition: all 0.5s;
+        
+                        &.err {
+                            border-bottom: 2px solid red;
+                        }
+            
+                        &:focus {
+                            background: white;
+                            background-color: white !important;
+                            border-bottom: 2px solid var(--web-color);
+    
+                            &::placeholder {
+                                color: var(--web-color);
+                            }
+                            &~i {
+                                color: var(--web-color);
+                            }
+                        }
+
+                        &.err {
+                            &~i {
+                                color: red;
+                            }
+                            &:focus {
+                                background: white;
+                                border-bottom: 2px solid red;
+                                &~i {
+                                    color: red;
+                                }
+                            }
+                        }
+
+                    }
+
+                    i {
+                        position: absolute;
+                        top: 50%;
+                        right: 0;
+                        font-size: 1.2em;
+                        transform: translateY(-50%);
+                        cursor: pointer;
+                        color: rgba(0,0,0,0.8);
+                    }
+                } 
+            }
+    
+            button {
+                width: 100%;
+                padding: 14px 10px;
+                background: var(--web-color);
+                text-align: center;
+                border-radius: 30px;
+                color: #fff;
+                border: 2px solid var(--web-color);
+                font-size: 1.1em;
+                cursor: pointer;
+                margin-top: 20px;
+                transition: all 0.5s;
+    
+                &:hover {
+                    color: var(--web-color);
+                    background: #fff;
+                }
+            }
+    
+            .bottomText {
+                color: rgba(0,0,0,0.7);
+                text-align: center;
+                font-size: 1.1em;
+    
+                a {
+                    color: var(--web-color);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.container {
+    max-width: 1250px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+
+@media screen and (max-width: 1150px) {
+    .container {
+        max-width: 750px;
+    }
+}    

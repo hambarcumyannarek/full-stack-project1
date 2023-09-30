@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/likes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body>
+
+    <nav>
+        <div class="container">
+            <h3 class="logo">
+                <i class="fa-solid fa-mobile-screen"></i>
+                SmartCenter
+            </h3>
+            <div class="navLeft">
+                <a href="/"><button class="btn back"><i class="fa-solid fa-chevron-left"></i></button></a>
+                <a href="/addProduct"><button class="btn addNewProductBtn"><i class="fa-solid fa-plus"></i></button></a>
+                <button class="btn profilBtn"></button>
+            </div>
+        </div>
+
+        <div class="profil">
+            <span>name: <%= name %></span>
+            <span>email: <%= email %></span>
+            <a href="/logout"><button class="btn">log out</button></a>
+        </div>
+    </nav>
+
+    <div class="section">
+        <div class="container productCont">
+            <div class="title">
+                <h2>My Favorite Products</h2>
+                <p>I Like And Save This Products</p>
+            </div>
+            <div class="boxes">
+
+                <% for(let i=0; i < likesProduct.length; i++) { %>
+                        <div class="card" id="<%= likesProduct[i].product_id %>">
+                            <div class="img">
+                                <div class="icons">
+                                    <i class="fa-regular fa-user getProductUser"></i>
+                                    <i class="fa-solid fa-heart like"></i>
+                                </div>
+                                <img src="images/upload/<%=likesProduct[i].img%>" alt="Notebook">
+                            </div>
+                            <div class="content">
+                                <h3>
+                                    <%=likesProduct[i].product_name%>
+                                </h3>
+                                <p>$<%=likesProduct[i].price%>
+                                </p>
+
+                                <button class="delButton">delete</button>
+                                <div class="infoBox">
+                                    <i class="fa-solid fa-xmark closeProductInfo"></i>
+                                    <div class="info">
+                                        <p>name: <%=likesProduct[i].author_name%>
+                                        </p>
+                                        <p>email: <%=likesProduct[i].author_email%>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                                <!-- <div class="card">
+
+                    <div class="img">
+                        <div class="icons">
+                            <i class="fa-solid fa-heart like"></i>
+                            <i class="fa-regular fa-user getProductUser"></i>
+                        </div>
+                        <img src="images/229b55f4ddb8cead332aНовый_проект__41_.png" alt="Notebook">
+                    </div>
+                    <div class="content">
+                        <h3>Product Name</h3>
+                        <p>$2500</p>
+                        <div class="infoBox">
+                            <i class="fa-solid fa-xmark closeProductInfo"></i>
+                            <div class="info">
+                                <p>name: Seroj</p>
+                                <p>email: Email@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+
+                    <div class="img">
+                        <div class="icons">
+                            <i class="fa-solid fa-heart like"></i>
+                            <i class="fa-regular fa-user getProductUser"></i>
+                        </div>
+                        <img src="images/229b55f4ddb8cead332aНовый_проект__41_.png" alt="Notebook">
+                    </div>
+                    <div class="content">
+                        <h3>Product Name</h3>
+                        <p>$2500</p>
+                        <div class="infoBox">
+                            <i class="fa-solid fa-xmark closeProductInfo"></i>
+                            <div class="info">
+                                <p>name: Seroj</p>
+                                <p>email: Email@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+
+                    <div class="img">
+                        <div class="icons">
+                            <i class="fa-solid fa-heart like"></i>
+                            <i class="fa-regular fa-user getProductUser"></i>
+                        </div>
+                        <img src="images/229b55f4ddb8cead332aНовый_проект__41_.png" alt="Notebook">
+                    </div>
+                    <div class="content">
+                        <h3>Product Name</h3>
+                        <p>$2500</p>
+                        <div class="infoBox">
+                            <i class="fa-solid fa-xmark closeProductInfo"></i>
+                            <div class="info">
+                                <p>name: Seroj</p>
+                                <p>email: Email@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+
+                    <div class="img">
+                        <div class="icons">
+                            <i class="fa-solid fa-heart like"></i>
+                            <i class="fa-regular fa-user getProductUser"></i>
+                        </div>
+                        <img src="images/229b55f4ddb8cead332aНовый_проект__41_.png" alt="Notebook">
+                    </div>
+                    <div class="content">
+                        <h3>Product Name</h3>
+                        <p>$2500</p>
+                        <div class="infoBox">
+                            <i class="fa-solid fa-xmark closeProductInfo"></i>
+                            <div class="info">
+                                <p>name: Seroj</p>
+                                <p>email: Email@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <script defer src="./scripts/likesProduct.js"></script>
+    <script defer>
+        let name = `<%=name%>`;
+        const btn = document.querySelector('.navLeft .profilBtn');
+        function getFirstIndex(realName) {
+            realName = realName.split('');
+            let sum;
+            for (let i of realName) {
+                if (i !== ' ') {
+                    sum = i;
+                    break;
+                }
+            }
+            return sum.toUpperCase();
+        }
+
+        btn.innerText = getFirstIndex('<%=name%>');
+        btn.addEventListener('click', (evn) => {
+            btn.classList.toggle('active');
+            if (btn.className.search('active') !== -1) {
+                btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                btn.innerText = getFirstIndex('<%=name%>');
+            }
+        })
+
+        const addNewProductBtn = document.querySelector('.addNewProductBtn');
+
+    </script>
+</body>
+
+</html>

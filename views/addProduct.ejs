@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addproduct</title>
+    <link rel="stylesheet" href="./css/addProduct.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="./css/addProduct.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h3 class="logo">
+                <i class="fa-solid fa-mobile-screen"></i>
+                SmartCenter
+            </h3>
+            <div class="navLeft">
+                <a href="/likesProduct"><button class="btn addNewProductBtn"><i class="fa-regular fa-heart"></i></button></a>
+                <a href="/"><button class="btn back"><i class="fa-solid fa-chevron-left"></i></button></a>
+                <button class="btn profilBtn"></button>
+            </div>
+        </div>
+
+        <div class="profil">
+            <span>name: <%= name %></span>
+            <span>email: <%= email %></span>
+            <a href="/logout"><button class="btn">log out</button></a>
+        </div>
+    </nav>
+
+    <div class="section addProductSection">
+        <div class="container">
+            <div class="title">
+                <h2>Can You Add Your Product</h2>
+            </div>
+
+            <form action="/addProduct" enctype="multipart/form-data" method="post" class="addProductForm">
+                <label>
+                    <span>Upload Product Images</span>
+                    <input type="file" id="file" name="productimg" placeholder="name" hidden required>
+                    <label for="file" class="uploadBox">
+                        <div class="uploadCenter">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>can tou upload img</span>
+                        </div>
+                        <div class="uploadImg">
+                            <!-- <img src="images/5d656b89c54b3784d6ebНовый_проект.png"> -->
+                        </div>
+                    </label>
+                </label>
+                <div class="formBottome">
+                    <label>
+                        <span>Product Name</span>
+                        <input type="text" name="name" placeholder="name" required>
+                    </label>
+                    <label>
+                        <span>Product Price</span>
+                        <input type="text" name="price" placeholder="price" required>
+                    </label>
+                </div>
+
+                <div class="formButtons">
+                    <button type="submit">Add Product</button>
+                    <button class="deleteAllInputsValues">Delete All Values</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="./scripts/addProduct.js"></script>
+    <script>
+        let name = `<%=name%>`;
+        const btn = document.querySelector('.navLeft .profilBtn');
+
+        function getFirstIndex(realName) {
+            realName = realName.split('');
+            let sum;
+            for(let i of realName) {
+                if(i !== ' ') { 
+                    sum = i;
+                    break;
+                } 
+            }
+            return sum.toUpperCase();
+    }
+
+        btn.innerText = getFirstIndex('<%=name%>');
+        btn.addEventListener('click', (evn) => {
+            btn.classList.toggle('active');
+            if(btn.className.search('active') !== -1) {
+                btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                btn.innerText = getFirstIndex('<%=name%>');
+            }
+        })
+
+        
+    </script>
+</body>
+</html>
