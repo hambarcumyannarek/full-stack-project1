@@ -9,25 +9,7 @@
     <link rel="stylesheet" href="./css/addProduct.css">
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <h3 class="logo">
-                <i class="fa-solid fa-mobile-screen"></i>
-                SmartCenter
-            </h3>
-            <div class="navLeft">
-                <a href="/likesProduct"><button class="btn addNewProductBtn"><i class="fa-regular fa-heart"></i></button></a>
-                <a href="/"><button class="btn back"><i class="fa-solid fa-chevron-left"></i></button></a>
-                <button class="btn profilBtn"></button>
-            </div>
-        </div>
-
-        <div class="profil">
-            <span>name: <%= name %></span>
-            <span>email: <%= email %></span>
-            <a href="/logout"><button class="btn">log out</button></a>
-        </div>
-    </nav>
+    <%- include('navbar.ejs') -%>
 
     <div class="section addProductSection">
         <div class="container">
@@ -69,33 +51,5 @@
     </div>
 
     <script src="./scripts/addProduct.js"></script>
-    <script>
-        let name = `<%=name%>`;
-        const btn = document.querySelector('.navLeft .profilBtn');
-
-        function getFirstIndex(realName) {
-            realName = realName.split('');
-            let sum;
-            for(let i of realName) {
-                if(i !== ' ') { 
-                    sum = i;
-                    break;
-                } 
-            }
-            return sum.toUpperCase();
-    }
-
-        btn.innerText = getFirstIndex('<%=name%>');
-        btn.addEventListener('click', (evn) => {
-            btn.classList.toggle('active');
-            if(btn.className.search('active') !== -1) {
-                btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-            } else {
-                btn.innerText = getFirstIndex('<%=name%>');
-            }
-        })
-
-        
-    </script>
 </body>
 </html>

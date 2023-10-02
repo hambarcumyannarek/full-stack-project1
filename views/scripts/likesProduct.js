@@ -1,12 +1,4 @@
 
-document.querySelector('.navLeft .profilBtn').addEventListener('click', () => {
-    document.querySelector('.profil').classList.toggle('active');
-})
-
-document.querySelector('nav').classList.toggle('active', window.scrollY > 0);
-window.addEventListener('scroll', () => {
-    document.querySelector('nav').classList.toggle('active', window.scrollY > 0)
-})
 const cards = document.querySelectorAll('.boxes .card');
 
 cards.forEach(card => {
@@ -36,12 +28,6 @@ let boxes = document.querySelector('.boxes');
 delButton.forEach(btn => {
     btn.addEventListener('click', () => {
         const productId = findParentCard(btn).getAttribute('id');
-        // let cardsArr = [];
-        // cards.forEach(card => {
-        //     if (card.getAttribute('id') !== id) {
-        //         cardsArr.push(card);
-        //     }
-        // })
 
         fetch(`/likesProduct`, {
             method: 'delete',
@@ -54,3 +40,8 @@ delButton.forEach(btn => {
         })
     })
 })
+
+const aTag = document.querySelector('.addNewLikesBtn');
+
+aTag.setAttribute('href', '/');
+aTag.querySelector('.btn').innerHTML = '<i class="fa-solid fa-chevron-left"></i>';

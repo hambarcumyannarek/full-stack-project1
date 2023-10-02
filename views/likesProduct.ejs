@@ -11,25 +11,8 @@
 
 <body>
 
-    <nav>
-        <div class="container">
-            <h3 class="logo">
-                <i class="fa-solid fa-mobile-screen"></i>
-                SmartCenter
-            </h3>
-            <div class="navLeft">
-                <a href="/"><button class="btn back"><i class="fa-solid fa-chevron-left"></i></button></a>
-                <a href="/addProduct"><button class="btn addNewProductBtn"><i class="fa-solid fa-plus"></i></button></a>
-                <button class="btn profilBtn"></button>
-            </div>
-        </div>
+    <%- include('navbar.ejs') -%>
 
-        <div class="profil">
-            <span>name: <%= name %></span>
-            <span>email: <%= email %></span>
-            <a href="/logout"><button class="btn">log out</button></a>
-        </div>
-    </nav>
 
     <div class="section">
         <div class="container productCont">
@@ -59,135 +42,19 @@
                                 <div class="infoBox">
                                     <i class="fa-solid fa-xmark closeProductInfo"></i>
                                     <div class="info">
-                                        <p>name: <%=likesProduct[i].author_name%>
-                                        </p>
-                                        <p>email: <%=likesProduct[i].author_email%>
-                                        </p>
+                                        <p><%= likesProduct[i].likesuser_id === id ? 'This yours' : 'name: '+likesProduct[i].author_name%></p>
+                                        <% if(likesProduct[i].likesuser_id !== id) {%>
+                                        <p>email: <%= likesProduct[i].author_email %></p>
+                                        <% } %> 
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <% } %>
-                                <!-- <div class="card">
-
-                    <div class="img">
-                        <div class="icons">
-                            <i class="fa-solid fa-heart like"></i>
-                            <i class="fa-regular fa-user getProductUser"></i>
-                        </div>
-                        <img src="images/229b55f4ddb8cead332aНовый_проект__41_.png" alt="Notebook">
-                    </div>
-                    <div class="content">
-                        <h3>Product Name</h3>
-                        <p>$2500</p>
-                        <div class="infoBox">
-                            <i class="fa-solid fa-xmark closeProductInfo"></i>
-                            <div class="info">
-                                <p>name: Seroj</p>
-                                <p>email: Email@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-
-                    <div class="img">
-                        <div class="icons">
-                            <i class="fa-solid fa-heart like"></i>
-                            <i class="fa-regular fa-user getProductUser"></i>
-                        </div>
-                        <img src="images/229b55f4ddb8cead332aНовый_проект__41_.png" alt="Notebook">
-                    </div>
-                    <div class="content">
-                        <h3>Product Name</h3>
-                        <p>$2500</p>
-                        <div class="infoBox">
-                            <i class="fa-solid fa-xmark closeProductInfo"></i>
-                            <div class="info">
-                                <p>name: Seroj</p>
-                                <p>email: Email@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-
-                    <div class="img">
-                        <div class="icons">
-                            <i class="fa-solid fa-heart like"></i>
-                            <i class="fa-regular fa-user getProductUser"></i>
-                        </div>
-                        <img src="images/229b55f4ddb8cead332aНовый_проект__41_.png" alt="Notebook">
-                    </div>
-                    <div class="content">
-                        <h3>Product Name</h3>
-                        <p>$2500</p>
-                        <div class="infoBox">
-                            <i class="fa-solid fa-xmark closeProductInfo"></i>
-                            <div class="info">
-                                <p>name: Seroj</p>
-                                <p>email: Email@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-
-                    <div class="img">
-                        <div class="icons">
-                            <i class="fa-solid fa-heart like"></i>
-                            <i class="fa-regular fa-user getProductUser"></i>
-                        </div>
-                        <img src="images/229b55f4ddb8cead332aНовый_проект__41_.png" alt="Notebook">
-                    </div>
-                    <div class="content">
-                        <h3>Product Name</h3>
-                        <p>$2500</p>
-                        <div class="infoBox">
-                            <i class="fa-solid fa-xmark closeProductInfo"></i>
-                            <div class="info">
-                                <p>name: Seroj</p>
-                                <p>email: Email@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
 
     <script defer src="./scripts/likesProduct.js"></script>
-    <script defer>
-        let name = `<%=name%>`;
-        const btn = document.querySelector('.navLeft .profilBtn');
-        function getFirstIndex(realName) {
-            realName = realName.split('');
-            let sum;
-            for (let i of realName) {
-                if (i !== ' ') {
-                    sum = i;
-                    break;
-                }
-            }
-            return sum.toUpperCase();
-        }
-
-        btn.innerText = getFirstIndex('<%=name%>');
-        btn.addEventListener('click', (evn) => {
-            btn.classList.toggle('active');
-            if (btn.className.search('active') !== -1) {
-                btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-            } else {
-                btn.innerText = getFirstIndex('<%=name%>');
-            }
-        })
-
-        const addNewProductBtn = document.querySelector('.addNewProductBtn');
-
-    </script>
 </body>
-
 </html>

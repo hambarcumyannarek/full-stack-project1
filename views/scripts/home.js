@@ -1,13 +1,4 @@
 
-document.querySelector('.navLeft .profilBtn').addEventListener('click', () => {
-    document.querySelector('.profil').classList.toggle('active');
-})
-
-document.querySelector('nav').classList.toggle('active', window.scrollY > 0);
-window.addEventListener('scroll', () => {
-    document.querySelector('nav').classList.toggle('active', window.scrollY > 0)
-})
-
 const likeBtn = document.querySelectorAll('.like');
 
 function findParentCard(tag) {
@@ -66,4 +57,3 @@ cards.forEach(card => {
         boxProductInfo.classList.remove('active');
     })
 })
-

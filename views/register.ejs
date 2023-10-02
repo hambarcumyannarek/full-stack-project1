@@ -14,46 +14,21 @@
             <div class="bottom">
                 <div class="inputs">
                     <label>
-                        <% if(nameBool) { %>
-                            <input type="text" class="err" placeholder="enter your name" name="name" value="<% if(emailBool || passwordBool || nameBool) { %><%= name.trim() %><% } %>" required>
-                        <% } %>
-
-                        <% if(!nameBool) { %>
-                            <input type="text" placeholder="enter your name" name="name" value="<% if(emailBool || passwordBool || nameBool) { %> <%= name.trim() %><% } %>" required>
-                        <% } %>
+                        <input type="text" class="<%= nameBool ? 'err' : ''%>" placeholder="enter your name" name="name" value="<% if(!nameBool) { %><%= locals.name || '' %><% } %>" required>
+                        <i class="fa-regular fa-user"></i>
+                    </label>
+                    <label>
+                        <input type="email" class="<%= emailBool ? 'err' : ''%>" placeholder="enter your email" name="email" value="<% if(!emailBool) { %><%= locals.email || '' %><% } %>" required>
                         <i class="fa-regular fa-envelope"></i>
                     </label>
                     <label>
-                        <% if(emailBool) { %>
-                            <input type="email" class="err" placeholder="enter your email" name="email" value="<% if(emailBool || passwordBool || nameBool) { %> <%= email.trim() %><% } %>" required>
-                        <% } %> 
-                        <% if(!emailBool) { %>
-                            <input type="email" placeholder="enter your email" name="email" value="<% if(emailBool || passwordBool || nameBool) { %> <%= email.trim() %><% } %>" required>
-                        <% } %> 
-                        <i class="fa-regular fa-envelope"></i>
+                        <input type="password" class="<%= passwordBool ? 'err' : ''%>" placeholder="password" name="password" value="<% if(!passwordBool) { %><%= locals.password || '' %><% } %>" required>
+                        <i class="fa-regular fa-eye-slash passIcon"></i>
                     </label>
-                    <% if(passwordBool) {%>
-                        <label>
-                            <input type="password" class="err" placeholder="password" value="<% if(emailBool || passwordBool || nameBool) { %><%=password[0].trim() %><% } %>" name="password">
-                            <i class="fa-regular fa-eye-slash passIcon"></i>
-                        </label>
-                        <label>
-                            <input type="password" class="err" placeholder="repeat password" value="<% if(emailBool || passwordBool || nameBool) { %><%=password[1].trim()%><%}%>" name="password">
-                            <i class="fa-regular fa-eye-slash passIcon"></i>
-                        </label>
-                    <% } %>
-
-                    <% if(!passwordBool) {%>
-                        <label>
-                            <input type="password" placeholder="password" value="<% if(emailBool || passwordBool || nameBool) { %><%=password[0].trim() %><% } %>" name="password">
-                            <i class="fa-regular fa-eye-slash passIcon"></i>
-                        </label>
-                        <label>
-                            <input type="password" placeholder="repeat password" value="<% if(emailBool || passwordBool || nameBool) { %><%=password[1].trim() %><% } %>" name="password">
-                            <i class="fa-regular fa-eye-slash passIcon"></i>
-                        </label>
-                    <% } %>
-                    
+                    <label>
+                        <input type="password" class="<%= passwordBool ? 'err' : ''%>" placeholder="password" name="password" value="<% if(!passwordBool) { %><%= locals.password || '' %><% } %>" required>
+                        <i class="fa-regular fa-eye-slash passIcon"></i>
+                    </label>
                 </div>
                 <button type="submit">Register</button>
                 <p class="bottomText">A mamber? <a href="/login">Sing In</a></p>

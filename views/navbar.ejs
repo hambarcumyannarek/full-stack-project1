@@ -1,0 +1,56 @@
+<nav>
+    <div class="container">
+        <h3 class="logo">
+            <i class="fa-solid fa-mobile-screen"></i>
+            SmartCenter
+        </h3>
+        <div class="navLeft">
+            <a href="/likesProduct" class="addNewLikesBtn"><button class="btn"><i class="fa-regular fa-heart"></i></button></a>
+            <a href="/addProduct" class="addNewProductBtn"><button class="btn"><i class="fa-solid fa-plus"></i></button></a>
+            <button class="btn profilBtn"></button>
+        </div>
+    </div>
+
+    <div class="profil">
+        <span>name: <%= name %></span>
+        <span>email: <%= email %></span>
+        <a href="/logout"><button class="btn">log out</button></a>
+    </div>
+</nav>
+
+<script>
+    document.querySelector('.navLeft .profilBtn').addEventListener('click', () => {
+        document.querySelector('.profil').classList.toggle('active');
+        console.log(1)
+    })
+
+    document.querySelector('nav').classList.toggle('active', window.scrollY > 0);
+    window.addEventListener('scroll', () => {
+        document.querySelector('nav').classList.toggle('active', window.scrollY > 0)
+    })
+
+    let name = `<%=name%>`;
+    const btn = document.querySelector('.navLeft .profilBtn');
+
+    function getFirstIndex(realName) {
+        realName = realName.split('');
+        let sum;
+        for(let i of realName) {
+            if(i !== ' ') { 
+                sum = i;
+                break;
+            } 
+        }
+        return sum.toUpperCase();
+    }
+
+    btn.innerText = getFirstIndex('<%=name%>');
+    btn.addEventListener('click', (evn) => {
+        btn.classList.toggle('active');
+        if(btn.className.search('active') !== -1) {
+            btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        } else {
+            btn.innerText = getFirstIndex('<%=name%>');
+        }
+    })
+</script>

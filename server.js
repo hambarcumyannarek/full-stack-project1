@@ -8,6 +8,7 @@ import path from 'path';
 import multer from 'multer'
 import fs from 'fs';
 
+
 const app = express();
 app.set('view-engine', 'ejs');
 app.use(express.static('views'));
@@ -20,6 +21,7 @@ app.use(session({
 app.use(express.urlencoded({ urlencoded: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 passport.use(new passportLocal.Strategy({
     usernameField: 'email'
 }, async (email, password, done) => {
@@ -106,9 +108,7 @@ app.get('/likesProduct', async (req, res) => {
     );
     console.log(cards[0])
     res.render('likesProduct.ejs', {
-        name: req.user.name,
-        email: req.user.email,
-        user_id: req.user.id,
+        ...req.user,
         likesProduct: cards[0]
     })
 })
@@ -202,7 +202,7 @@ app.post('/register', async (req, res) => {
         res.render('register.ejs', {
             name,
             email,
-            password,
+            password: password[0],
             emailBool,
             passwordBool,
             nameBool

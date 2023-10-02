@@ -1,14 +1,4 @@
 
-document.querySelector('.navLeft .profilBtn').addEventListener('click', () => {
-    document.querySelector('.profil').classList.toggle('active');
-})
-
-document.querySelector('nav').classList.toggle('active', window.scrollY > 0);
-window.addEventListener('scroll', () => {
-    document.querySelector('nav').classList.toggle('active', window.scrollY > 0)
-})
-
-
 document.querySelector('form').addEventListener("submit", (evn) => {
     evn.preventDefault();
     evn.target.submit();
@@ -47,3 +37,9 @@ document.querySelector('.deleteAllInputsValues').addEventListener('click', () =>
     uploadImg.innerHTML = '';
     removeUploadImgMargines();
 })
+
+
+const aTag = document.querySelector('.addNewProductBtn');
+
+aTag.setAttribute('href', '/');
+aTag.querySelector('.btn').innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
